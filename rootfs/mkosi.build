@@ -1,0 +1,12 @@
+#!/bin/bash
+
+set -eux
+
+echo -e "\n\n\n\n\n\n\n"
+
+cd /work/src/linux
+release=$(make kernelrelease)
+make install INSTALL_PATH=$DESTDIR/lib/modules/$release
+make modules_install INSTALL_MOD_PATH=$DESTDIR
+
+ls -R $DESTDIR
